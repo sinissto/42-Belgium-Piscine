@@ -1,24 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   ft_div_mod.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 17:09:30 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/19 17:09:32 by sstojano         ###   ########.fr       */
+/*   Created: 2026/07/10 11:18:48 by sstojano          #+#    #+#             */
+/*   Updated: 2026/07/16 19:05:54 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_str_is_printable(char *str);
-
-int	main(void)
+void	ft_div_mod(int a, int b, int *div, int *mod)
 {
-	char	*src_str;
-
-	src_str = "";
-	printf("Returned val: %d\n", ft_str_is_printable(src_str));
-	return (0);
+	*div = a / b;
+	*mod = a % b;
 }

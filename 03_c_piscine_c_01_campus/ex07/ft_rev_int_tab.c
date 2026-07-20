@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   ft_rev_int_tab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 17:09:30 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/19 17:09:32 by sstojano         ###   ########.fr       */
+/*   Created: 2026/07/16 00:31:13 by sstojano          #+#    #+#             */
+/*   Updated: 2026/07/16 13:24:11 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_str_is_printable(char *str);
-
-int	main(void)
+void	ft_rev_int_tab(int *tab, int size)
 {
-	char	*src_str;
+	int	temp;
+	int	i;
+	int	j;
 
-	src_str = "";
-	printf("Returned val: %d\n", ft_str_is_printable(src_str));
-	return (0);
+	i = 0;
+	j = size - 1;
+	while (i < j)
+	{
+		temp = tab[i];
+		tab[i] = tab[j];
+		tab[j] = temp;
+		i++;
+		j--;
+	}
 }

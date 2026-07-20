@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
+/*   By: sstojano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 17:09:30 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/19 17:09:32 by sstojano         ###   ########.fr       */
+/*   Created: 2026/07/10 12:04:04 by sstojano          #+#    #+#             */
+/*   Updated: 2026/07/10 12:10:04 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	ft_str_is_printable(char *str);
+void ft_ultimate_div_mod(int *a, int *b);
 
-int	main(void)
+int main(void)
 {
-	char	*src_str;
-
-	src_str = "";
-	printf("Returned val: %d\n", ft_str_is_printable(src_str));
+	int	a;
+	int	b;
+	int	*ptr_a;
+	int	*ptr_b;
+	
+	ptr_a = &a;
+	ptr_b = &b;
+	a = 9;
+	b = 2;
+	ft_ultimate_div_mod(ptr_a, ptr_b);
+	printf("a: %d\n", *ptr_a);
+	printf("b: %d\n", *ptr_b);
 	return (0);
 }

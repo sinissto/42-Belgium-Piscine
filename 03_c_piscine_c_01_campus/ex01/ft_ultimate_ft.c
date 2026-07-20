@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   ft_ultimate_ft.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 17:09:30 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/19 17:09:32 by sstojano         ###   ########.fr       */
+/*   Created: 2026/07/10 09:48:34 by sstojano          #+#    #+#             */
+/*   Updated: 2026/07/16 19:03:16 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_str_is_printable(char *str);
-
-int	main(void)
+void	ft_ultimate_ft(int *********nbr)
 {
-	char	*src_str;
-
-	src_str = "";
-	printf("Returned val: %d\n", ft_str_is_printable(src_str));
-	return (0);
+	*********nbr = 42;
 }

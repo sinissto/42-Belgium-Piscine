@@ -5,12 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 17:09:16 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/19 17:09:19 by sstojano         ###   ########.fr       */
+/*   Created: 2026/07/19 17:08:56 by sstojano          #+#    #+#             */
+/*   Updated: 2026/07/20 15:39:06 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_str_is_lowercase(char *str)
+int	ft_str_is_lowercase(char *str)
 {
-	
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if ('a' <= str[i] && str[i] <= 'z')
+		{
+			i++;
+		}
+		else
+			return (0);
+	}
+	return (1);
 }

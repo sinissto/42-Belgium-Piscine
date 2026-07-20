@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 17:09:30 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/19 17:09:32 by sstojano         ###   ########.fr       */
+/*   Created: 2026/07/10 10:35:26 by sstojano          #+#    #+#             */
+/*   Updated: 2026/07/16 19:04:40 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_str_is_printable(char *str);
-
-int	main(void)
+void	ft_swap(int *a, int *b)
 {
-	char	*src_str;
+	int	tmp;
 
-	src_str = "";
-	printf("Returned val: %d\n", ft_str_is_printable(src_str));
-	return (0);
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

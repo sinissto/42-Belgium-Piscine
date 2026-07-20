@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 17:09:30 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/19 17:09:32 by sstojano         ###   ########.fr       */
+/*   Created: 2026/07/16 00:32:35 by sstojano          #+#    #+#             */
+/*   Updated: 2026/07/16 12:54:45 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_str_is_printable(char *str);
+void	ft_rev_int_tab(int *tab, int size);
 
 int	main(void)
 {
-	char	*src_str;
+	int		int_arr[6];
+	int		int_arr_len;
 
-	src_str = "";
-	printf("Returned val: %d\n", ft_str_is_printable(src_str));
+	int_arr[0] = 10;
+	int_arr[1] = 20;
+	int_arr[2] = 30;
+	int_arr[3] = 40;
+	int_arr[4] = 50;
+	int_arr_len = 5;
+	ft_rev_int_tab(int_arr, int_arr_len);
 	return (0);
 }

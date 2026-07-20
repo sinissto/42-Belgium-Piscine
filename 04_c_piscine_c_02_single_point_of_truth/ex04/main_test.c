@@ -1,11 +1,24 @@
-int ft_str_is_lowercase(char *str);
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_str_is_lowercase.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/19 17:08:56 by sstojano          #+#    #+#             */
+/*   Updated: 2026/07/20 15:39:06 by sstojano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h>
+
+int	ft_str_is_lowercase(char *str);
 
 int	main(void)
 {
-	char src_str[30];
-	char dest_str[30];
+	char	*src_str;
 
-	// src_str = "This is test string";
-
-	ft_strcpy(dest_str, src_str);
+	src_str = "";
+	printf("Returned val: %d\n", ft_str_is_lowercase(src_str));
+	return (0);
 }

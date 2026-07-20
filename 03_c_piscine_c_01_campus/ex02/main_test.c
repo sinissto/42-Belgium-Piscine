@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
+/*   By: sstojano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 17:09:30 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/19 17:09:32 by sstojano         ###   ########.fr       */
+/*   Created: 2026/07/10 10:58:10 by sstojano          #+#    #+#             */
+/*   Updated: 2026/07/10 11:06:14 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	ft_str_is_printable(char *str);
+void	ft_swap(int *a, int *b);
 
 int	main(void)
-{
-	char	*src_str;
-
-	src_str = "";
-	printf("Returned val: %d\n", ft_str_is_printable(src_str));
+{	
+	int	a;
+	int	b;
+	int	*ptr_a;
+	int	*ptr_b;
+	
+	a = 4;
+	b = 9;
+	ptr_a = &a;
+	ptr_b = &b;
+	printf("A value before: %d\n", a);
+	printf("B value before: %d\n", b);
+	ft_swap(ptr_a, ptr_b);
+	printf("A value after: %d\n", a);
+	printf("B value after: %d\n", b);
 	return (0);
 }

@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
+/*   By: sstojano <sstojano@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 17:09:30 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/19 17:09:32 by sstojano         ###   ########.fr       */
+/*   Created: 2026/07/16 23:52:57 by sstojano          #+#    #+#             */
+/*   Updated: 2026/07/16 00:22:19 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	ft_str_is_printable(char *str);
+int	ft_strlen(char *str);
 
 int	main(void)
 {
-	char	*src_str;
+	char	*str;
+	int		str_len;
 
-	src_str = "";
-	printf("Returned val: %d\n", ft_str_is_printable(src_str));
-	return (0);
+	str = "Sinisa Stojanovic";
+	str_len = ft_strlen(str);
+	printf("%d", str_len);
 }

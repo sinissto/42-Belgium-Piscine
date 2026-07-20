@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
+/*   By: sstojano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 17:09:30 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/19 17:09:32 by sstojano         ###   ########.fr       */
+/*   Created: 2026/07/10 11:22:09 by sstojano          #+#    #+#             */
+/*   Updated: 2026/07/10 11:52:58 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	ft_str_is_printable(char *str);
+void	ft_div_mod(int a, int b, int *div, int *mod);
 
 int	main(void)
 {
-	char	*src_str;
+	int	a;
+	int	b;
+	int	div;
+	int	mod;
+	int	*ptr_div;
+	int	*ptr_mod;
 
-	src_str = "";
-	printf("Returned val: %d\n", ft_str_is_printable(src_str));
+	ptr_div = &div;
+	ptr_mod = &mod;
+	a = 9;
+	b = 4;
+	ft_div_mod(a, b, ptr_div, ptr_mod);
+	printf("a / b = %d\n", div);
+	printf("a %% b = %d\n", mod);
 	return (0);
 }

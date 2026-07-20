@@ -6,11 +6,23 @@
 /*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 17:08:56 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/19 17:09:03 by sstojano         ###   ########.fr       */
+/*   Updated: 2026/07/20 15:39:06 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_str_is_numeric(char *str)
+int	ft_str_is_numeric(char *str)
 {
-	
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if ('0' <= str[i] && str[i] <= '9')
+		{
+			i++;
+		}
+		else
+			return (0);
+	}
+	return (1);
 }

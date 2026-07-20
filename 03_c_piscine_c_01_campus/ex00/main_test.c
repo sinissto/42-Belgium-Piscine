@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
+/*   By: sstojano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 17:09:30 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/19 17:09:32 by sstojano         ###   ########.fr       */
+/*   Created: 2026/07/10 08:56:27 by sstojano          #+#    #+#             */
+/*   Updated: 2026/07/10 09:38:10 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
 
-int	ft_str_is_printable(char *str);
+void	ft_ft(int*nbr);
 
 int	main(void)
 {
-	char	*src_str;
+	int	number;
+	int	*ptr_number;
 
-	src_str = "";
-	printf("Returned val: %d\n", ft_str_is_printable(src_str));
+	ptr_number = &number;
+	ft_ft(ptr_number);
+	write(1, &number, 2);
+	ft_ft(NULL);
 	return (0);
 }

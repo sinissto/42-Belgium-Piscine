@@ -6,11 +6,24 @@
 /*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 17:08:29 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/19 17:08:42 by sstojano         ###   ########.fr       */
+/*   Updated: 2026/07/20 15:34:55 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_str_is_alpha(char *str)
+int	ft_str_is_alpha(char *str)
 {
-	
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (('a' <= str[i] && str[i] <= 'z')
+			|| ('A' <= str[i] && str[i] <= 'Z'))
+		{
+			i++;
+		}
+		else
+			return (0);
+	}
+	return (1);
 }

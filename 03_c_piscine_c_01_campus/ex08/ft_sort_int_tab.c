@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   ft_sort_int_tab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 17:09:30 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/19 17:09:32 by sstojano         ###   ########.fr       */
+/*   Created: 2026/07/16 13:31:54 by sstojano          #+#    #+#             */
+/*   Updated: 2026/07/16 18:54:42 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_str_is_printable(char *str);
-
-int	main(void)
+void	ft_sort_int_tab(int *tab, int size)
 {
-	char	*src_str;
+	int	i;
+	int	k;
+	int	temp;
 
-	src_str = "";
-	printf("Returned val: %d\n", ft_str_is_printable(src_str));
-	return (0);
+	i = 0;
+	while (i < size - 1)
+	{
+		k = 0;
+		while (k < size - 1)
+		{
+			if (tab[k] > tab[k + 1])
+			{
+				temp = tab[k];
+				tab[k] = tab[k + 1];
+				tab[k + 1] = temp;
+			}
+			k++;
+		}
+		i++;
+	}
 }
