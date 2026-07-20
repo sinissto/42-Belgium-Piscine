@@ -1,0 +1,135 @@
+provedi me kroz ovaj kod koji je napisan u C programskom jeziku
+
+
+Ran a command, read 7 files
+Ovo je Skyscraper (rush-01) solver — program prima 16 brojeva ("view" pragova) i traži jedinstveno rešenje za 4×4 mrežu nebodera (1-4) tako da broj vidljivih zgrada sa svake strane odgovara datim pragovima. Evo toka kroz kod, fajl po fajl.
+
+1. Tok programa — main.c
+if (!arg_validation(argc, argv)) return (1);
+parse_arg_str_to_int_arr(argv[1], views);
+init_grid(grid);
+if (solve(grid, views, 0))
+    print_grid(grid);
+else
+    ft_putstr("Error\n");
+Program očekuje jedan argument — string sa 16 brojeva razdvojenih razmacima, npr. "2 2 1 3 2 2 3 1 1 2 2 3 3 2 2 1". Zatim: validacija → parsiranje → inicijalizacija mreže → backtracking solve → ispis.
+
+2. Validacija — arg_validation.c
+is_char_digit (linija 15) — dozvoljava samo cifre '1'–'4' (skyscraper vrednosti, jer je mreža 4×4).
+find_num_of_arg_digits (linija 29) — prolazi kroz string i traži striktan naizmeničan obrazac cifra-razmak-cifra-razmak... (is_digit se flip-uje svaki karakter). Ovo garantuje tačno jedan razmak između brojeva, bez vodećih/pratećih razmaka. Vraća broj cifara ili -1 ako obrazac ne valja.
+validate_arg_str zahteva tačno 16 cifara.
+arg_validation proverava argc == 2 i poziva gornje.
+3. Parsiranje — parse_arg.c
+Prosto prelazi string karakter po karakter i svaku cifru upisuje u arg_nbrs[j] (niz views[16]) kao int (c - 48 = arg_char_nbr_to_int).
+
+Raspored views[16] je bitan (vidi se iz check.c):
+
+views[0..3] → pogled odozgo za svaku kolonu
+views[4..7] → pogled odozdo za svaku kolonu
+views[8..11] → pogled sleva za svaki red
+views[12..15]→ pogled zdesna za svaki red
+4. Backtracking solver — solve.c
+init_grid — puni mrežu nulama.
+is_free(grid, r, c, v) (linija 34) — proverava da li vrednost v već postoji iznad u istoj koloni (i < r) ili levo u istom redu (i < c). Pošto se popunjava red-po-red, dovoljno je gledati samo ćelije koje su već postavljene.
+solve(grid, views, pos) (linija 55) — rekurzivni backtracking po pozicijama 0..15:
+r = pos/4, c = pos%4
+Proba vrednosti 1..4, za svaku proverava is_free.
+Pametna optimizacija: red se proverava (check_row) tek kad se popuni poslednja kolona toga reda (c == 3), a kolona (check_col) tek kad se popuni poslednji red (r == 3) — nema smisla proveravati "vidljivost" dok red/kolona nije kompletna.
+Ako sve prođe, rekurzivno ide na pos + 1; ako ne uspe nijedna vrednost, vraća se i resetuje ćeliju (backtrack).
+5. Provera reda/kolone — check.c
+check_row/check_col samo izvuku 4 vrednosti reda/kolone u pomoćni niz av[4] i pozovu ft_view sa odgovarajućim parom pragova (levo/desno ili gore/dole).
+
+6. Računanje vidljivosti — ft_view.c
+Ovo je srce logike "koliko se zgrada vidi sa jedne strane":
+
+ft_first_view (linija 17) — gleda niz od početka ka kraju (levo→desno ili gore→dole). Zgrada je vidljiva ako je viša od svih prethodnih (klasična "broj rekorda u nizu" logika, ručno odmotana za 4 elementa jer nema petlje unazad — svaki i eksplicitno proverava sve prethodne).
+ft_sec_view (linija 41) — isto, ali obrnuto, od kraja ka početku (desno→levo / dole→gore).
+ft_view vraća 1 samo ako oba izračunata broja tačno odgovaraju traženim pragovima (left_top, right_bottom).
+7. Ispis — print.c
+ft_putchar/ft_putstr su ručne zamene za putchar/printf (koriste write direktno — tipično za 42 pravila bez libc I/O funkcija). print_grid ispisuje mrežu 4×4 sa razmacima između brojeva i novim redom po redu.
+
+Primer pokretanja
+
+Ran 4 commands
+Radi — evo primera pokretanja:
+
+$ ./rush01 "4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
+1 2 3 4
+2 3 4 1
+3 4 1 2
+4 1 2 3
+(Moj prvi ručno izračunat primer je bio pogrešan — omašio sam se pri računanju "bottom"/"right" pogleda; program je ispravno vratio Error jer takva mreža ne postoji za te pragove.)
+
+Rezime celog toka
+argv[1] (string) 
+   → arg_validation()      provera formata "d d d ... d" (16×, cifre 1-4)
+   → parse_arg_str_to_int_arr()   → views[16]  (top|bottom|left|right)
+   → init_grid()            grid[4][4] = sve nule
+   → solve()  (backtracking, pos 0..15)
+        ├─ is_free()        Latin-square uslov (jedinstvenost u redu/koloni)
+        └─ check_row/check_col → ft_view() → ft_first_view + ft_sec_view
+   → print_grid()  ili  "Error\n"
+Ako želiš, mogu i da ti nacrtam dijagram backtracking rekurzije ili da prođemo kroz konkretan primer korak-po-korak (koje vrednosti solve() proba i zašto se vraća unazad).
+
+oooo da, to je ono sto me najvise zanima
+
+Replicate solve() with tracing to inspect backtracking behavior
+Odlično, hajde da pratimo solve() korak po korak na istom primeru koji smo već testirali: "4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2" → rešenje je
+
+1 2 3 4
+2 3 4 1
+3 4 1 2
+4 1 2 3
+Da bih dobio tačan trag izvršavanja, napravio sam veran Python "kopiju" tvoje solve()/is_free()/ft_view() logike i logovao svaki pokušaj. Evo šta se stvarno dešava — pratimo mapiranje iz solve.c:63-64: pos ide 0→15, a r = pos/4, c = pos%4 (popunjava se red-po-red, levo-desno).
+
+Red 0 (pos 0-3) — glatko, bez backtracka
+Ne postoje prethodno postavljene ćelije, pa is_free retko odbija, i pošto ovo nije poslednja kolona/red, check_row/check_col se uopšte ne pozivaju dok ne stignemo do c == 3:
+
+pos0 (r0,c0): v=1 → is_free ✔  (postavljeno: 1)
+pos1 (r0,c1): v=1 → is_free ✘ (1 već u redu)  v=2 → ✔
+pos2 (r0,c2): v=1 ✘  v=2 ✘  v=3 → ✔
+pos3 (r0,c3): v=1 ✘  v=2 ✘  v=3 ✘  v=4 → ✔
+             c==3 ⇒ check_row(0) → uporedi red [1,2,3,4] sa views[8]=4, views[12]=1 → ✔ prolazi
+Red 0 = 1 2 3 4. Napreduje na pos 4.
+
+Red 1 (pos 4-7) — ovde se prvi put dešava backtrack
+pos4 (r1,c0): v=1 ✘ (1 zauzet u koloni 0)   v=2 → ✔   (red: 2 _ _ _)
+pos5 (r1,c1): v=1 → ✔                        (red: 2 1 _ _)
+pos6 (r1,c2): v=1 ✘  v=2 ✘  v=3 ✘  v=4 → ✔   (red: 2 1 4 _)
+pos7 (r1,c3): v=1 ✘  v=2 ✘  v=3 → ✔           (red: 2 1 4 3)
+             c==3 ⇒ check_row(1) → [2,1,4,3] naspram views[9]=3, views[13]=2 → ✘ NE PROLAZI!
+             v=4 → is_free ✘ (4 zauzet u koloni 2)
+             → SVE vrednosti na pos7 su iscrpljene → BACKTRACK na pos6
+Ovo je ključni momenat: check_row odbija [2,1,4,3] jer se sa te kombinacije ne vidi tačan broj zgrada, ali pošto se poziva tek na c==3, program je morao da popuni celu poziciju 4-7 da bi to otkrio.
+
+pos6 (r1,c2): sledeća vrednost nakon 4 → nema više (1,2,3 već probane, 4 upravo otkazana) → BACKTRACK na pos5
+pos5 (r1,c1): v=2 ✘ (2 zauzet u redu)  v=3 → ✔        (red: 2 _ 3 _ → ponovo od pos6)
+pos6 (r1,c2): v=1 → ✔                                  (red: 2 3 1 _)
+pos7 (r1,c3): v=1 ✘  v=2 ✘  v=3 ✘  v=4 ✘ → SVE otkazane → BACKTRACK na pos6
+pos6 (r1,c2): v=2 ✘  v=3 ✘  v=4 → ✔                    (red: 2 3 4 _)
+pos7 (r1,c3): v=1 → ✔
+             check_row(1) → [2,3,4,1] naspram (3,2) → ✔ prolazi!
+Red 1 = 2 3 4 1. Napreduje na pos 8.
+
+Red 2 (pos 8-11) — drugi backtrack, ali unutar is_free, ne check_row
+pos8  (r2,c0): v=1 ✘  v=2 ✘  v=3 → ✔                  (red: 3 _ _ _)
+pos9  (r2,c1): v=1 → ✔                                 (red: 3 1 _ _)
+pos10 (r2,c2): v=1 ✘  v=2 → ✔                          (red: 3 1 2 _)
+pos11 (r2,c3): v=1 ✘  v=2 ✘  v=3 ✘  v=4 ✘ → BACKTRACK na pos10
+pos10 (r2,c2): v=3 ✘  v=4 ✘ → nema više → BACKTRACK na pos9
+pos9  (r2,c1): v=2 ✘  v=3 ✘  v=4 → ✔                   (red: 3 _ _ _ → 3,4)
+pos10 (r2,c2): v=1 → ✔                                 (red: 3 4 1 _)
+pos11 (r2,c3): v=1 ✘  v=2 → ✔
+             check_row(2) → [3,4,1,2] naspram (2,1) → ✔ prolazi
+Ovde check_row uopšte nije "kriv" — sve vrednosti na pos11 su prosto bile zauzete u koloni (uniqueness sudar), pa je is_free sam izazvao povratak dva nivoa unazad.
+
+Red 2 = 3 4 1 2.
+
+Red 3 (pos 12-15) — poslednji red, ovde se prvi put poziva check_col
+Kada se popuni pos15 (r=3, c=3), to je istovremeno i poslednja kolona u redu i poslednji red u koloni, pa se pozivaju i check_row(3) i check_col(0..3) za svaku kolonu koja se upravo zatvorila. Pošto je ostalo tačno po jedna moguća vrednost po ćeliji (Latin-square prisila), sve prolazi bez dodatnog vraćanja i solve(16) vraća 1 → gotovo.
+
+Zaključak — mehanika backtracka
+is_free je "jeftina" provera (samo uniqueness) i radi se za svaku probu vrednosti — najčešći uzrok trenutnog odbijanja i najplićih povrataka (kao kod pos11).
+check_row/check_col su "skupe" provere (moraju ceo red/kolonu) i rade se samo kada je red/kolona kompletna (c==3 odn. r==3) — zato ih vidiš samo povremeno u tragu, ali kad odbiju (kao na pos7 sa [2,1,4,3]), povlače ceo red unazad, ne samo poslednju ćeliju.
+Backtrack = grid[r][c] = 0; return 0; na dnu solve.c:77-78 — poziva se kada su sve 4 vrednosti na trenutnoj poziciji iscrpljene, i to jednostavno vraća kontrolu pozivaocu (prethodnom pos), koji onda proba svoju sledeću vrednost u while (++v <= 4).
+Ukupno je za ovaj primer program napravio 74 pokušaja (is_free/check kombinovano) pre nego što je našao rešenje — mala mreža, pa je backtracking brz, ali princip je isti kao kod mnogo težih instanci.
