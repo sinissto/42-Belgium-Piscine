@@ -6,20 +6,24 @@
 /*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 09:41:44 by sstojano          #+#    #+#             */
-/*   Updated: 2026/07/17 10:12:04 by sstojano         ###   ########.fr       */
+/*   Updated: 2026/07/22 10:11:43 by sstojano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_strncpy(char *dest, char *src, unsigned int n);
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
-	while (src[i] != '\0')
+	while (src[i] != '\0' && i < n)
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
 	return (dest);
 }

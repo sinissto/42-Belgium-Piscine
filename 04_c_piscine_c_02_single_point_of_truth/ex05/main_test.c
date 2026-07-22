@@ -18,7 +18,7 @@ int	main(void)
 {
 	char	*src_str;
 
-	src_str = "";
+	src_str = "DSS5DAS";
 	printf("Returned val: %d\n", ft_str_is_uppercase(src_str));
 	return (0);
 }

@@ -18,7 +18,7 @@ int	main(void)
 {
 	char	*src_str;
 
-	src_str = "";
+	src_str = "dcvv4zxcv";
 	printf("Vravena vrednost iz funkcije: %d\n", ft_str_is_alpha(src_str));
 	return (0);
 }

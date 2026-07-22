@@ -18,7 +18,7 @@ int	main(void)
 {
 	char	*src_str;
 
-	src_str = "";
+	src_str = "dfsaAfas";
 	printf("Returned val: %d\n", ft_str_is_lowercase(src_str));
 	return (0);
 }

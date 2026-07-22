@@ -10,7 +10,7 @@ int	main(void)
 
 	src_str = "1234567890";
 	printf("Before strlcpy: %s\n", src_str);
-	num_of_chars = ft_strlcpy(dest_str, src_str, 0);
+	num_of_chars = ft_strlcpy(dest_str, src_str, 5);
 	printf("After strlcpy: %s\n", dest_str);
 	printf("Number of chars: %d\n", num_of_chars);
 	return (0);
