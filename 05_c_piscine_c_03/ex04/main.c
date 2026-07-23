@@ -4,10 +4,18 @@ char *ft_strstr(char *str, char *to_find);
 
 int	main(void)
 {
-	char	s1[10] = "abcd";
-	char	s2[6] = "bc";
-	
-	ft_strstr (s1, s2);
-	printf("main (dest): %s\n", s1);
+	char	*s1;
+	// char	*s2;
+	char	*to_find;
+	char	*result;
+
+	s1 = "a";
+	to_find = "xyz";
+
+	result = ft_strstr(s1, to_find);
+	if (result == NULL)
+		printf("NULL");
+	else
+		printf("%s\n", result);
 	return (0);
 }
