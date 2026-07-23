@@ -14,12 +14,13 @@
 
 int	ft_atoi(char *str);
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	char	*str;
 	int		number;
 
-	str = "abc";
+	number = argc;
+	str = argv[1];
 	printf("String: %s\n", str);
 	number = ft_atoi(str);
 	printf("Broj:   %d\n", number);
