@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_03.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sstojano <sstojano@student.42belgium.be>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/23 15:16:43 by sstojano          #+#    #+#             */
+/*   Updated: 2026/07/23 17:26:52 by sstojano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 
 int	ft_atoi(char *str);
@@ -7,7 +19,7 @@ int	main(void)
 	char	*str;
 	int		number;
 
-	str = " ---+--+1234ab567";
+	str = "abc";
 	printf("String: %s\n", str);
 	number = ft_atoi(str);
 	printf("Broj:   %d\n", number);
