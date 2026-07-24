@@ -27,14 +27,13 @@ int	main(void)
 	base_bin = "01";
 	base_hex = "0123456789ABCDEF";
 	base_oct = "poneyvif";
-	printf("Broj za konverziju: %d\n", nbr);
 	printf(" - Decimalna konverzija: ");
-	ft_putnbr_base(nbr, base_dec);
+	ft_putnbr_base(0, base_dec);
 	printf("\n - Binarna konverzija: ");
-	ft_putnbr_base(nbr, base_bin);
+	ft_putnbr_base(0, "");
 	printf("\n - Hex konverzija: ");
-	ft_putnbr_base(nbr, base_hex);
+	ft_putnbr_base(42, "aab");
 	printf("\n - Oct konverzija: ");
-	ft_putnbr_base(nbr, base_oct);
+	ft_putnbr_base(-42, base_hex);
 	return (0);
 }
